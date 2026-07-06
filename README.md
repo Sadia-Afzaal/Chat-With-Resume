@@ -39,22 +39,6 @@ Tips:
 - No restart needed for JSON edits if you're using Flask's debug/reload mode
   (already enabled in `app.py`).
 
-## Make it "impressive" for LinkedIn
-
-- Record a 20–30 second screen recording of you asking it 3–4 questions.
-- Post it with a caption like: *"Recruiters usually skim resumes in 6 seconds —
-  so I built a chatbot that lets them just ask instead. Try it 👇"*
-- Deploy it for free on **Render** or **Railway** so you can share a live link,
-  not just a video (both support free Flask hosting).
-
-## Optional upgrades (once the MVP is live)
-- Swap TF-IDF for sentence embeddings (e.g. `sentence-transformers`) for smarter matching.
-- Add a "Download my resume" button in the chat header.
-- Log unanswered questions to a file so you know what to add to the knowledge base.
-- Connect it to an actual LLM API (OpenAI/Anthropic) for more natural, generative answers
-  instead of fixed responses — swap `get_best_answer()` in `app.py` to call the API,
-  using the matched Q&A as context.
-
 ## Project structure
 ```
 chat-with-resume/
