@@ -1,0 +1,90 @@
+[
+  {
+    "question": "Who is Sadia? Tell me about yourself.",
+    "answer": "👋 I'm Sadia Afzaal, a 21-year-old BSCS student at the University of Gujrat, Pakistan. I've just completed my 6th semester and I'm currently on summer break — using this time to build projects and gain experience!\n\n💻 I'm a passionate full-stack developer with a CGPA of 3.45, graduating in 2027. I love building real-world applications — from React frontends to Flask backends to ML models.\n\n🎯 I freelance on Contra as a full-stack developer and I'm actively looking for a remote internship to make the most of my summer break!"
+  },
+  {
+    "question": "What is your education? Where do you study?",
+    "answer": "🎓 I'm a BSCS (Bachelor of Science in Computer Science) student at the University of Gujrat, Pakistan.\n\n📚 **Current Status:**\n• Just completed 6th semester ✅\n• On summer break (July-August 2026) ☀️\n• CGPA: 3.45/4.0\n• Expected graduation: 2027\n\n📍 Originally from Jalalpur Jattan, studying in Gujrat.\n\n📖 My coursework includes: Data Structures, Compiler Construction, Mobile App Development, Machine Learning, and Database Systems — all of which I apply in my projects."
+  },
+  {
+    "question": "What are you doing during your summer break?",
+    "answer": "☀️ Since I just completed my 6th semester, I'm using my summer break productively:\n\n• 🔍 **Looking for a remote internship** — I want to gain industry experience\n• 💻 **Building projects** — Currently working on expanding my portfolio\n• 🎯 **Freelancing** — Taking projects on Contra and Turing\n• 📚 **Learning** — Exploring new technologies like Docker and advanced ML\n\n🚀 I'm fully available and ready to start an internship immediately. Let's connect!"
+  },
+  {
+    "question": "What technologies or skills do you know? What is your tech stack?",
+    "answer": "💻 My technical toolkit is diverse and growing:\n\n🎨 **Frontend:** React, Tailwind CSS, HTML5, CSS3, JavaScript\n⚙️ **Backend:** Flask, Node.js, Express.js\n🗄️ **Databases:** MongoDB, SQLite, PostgreSQL\n📱 **Mobile:** Flutter, React Native\n🤖 **ML/AI:** Scikit-learn, TensorFlow, NLP, NumPy, Pandas\n🔧 **Other:** Docker, Git, Socket.io, Leaflet.js, REST APIs\n\n🏆 **What I'm best at:** Full-stack development — I can build an entire application from scratch, handle the frontend UI, backend logic, database design, and even integrate machine learning models when needed."
+  },
+  {
+    "question": "What projects have you worked on? List your projects.",
+    "answer": "🚀 I've built several projects that solve real problems:\n\n1. **Doctor Consultation App** — A telehealth platform for virtual appointments\n2. **AI FraudGuard Detection System** — Credit card fraud detection using ML\n3. **Todo App** — Full CRUD application with API integration\n4. **Weather & Mood App** — Combines weather data with mood tracking\n5. **Head Hunter Hair Styling** — A salon management/booking website\n6. **Portfolio Website** — Personal portfolio showcasing my work\n7. **ResumeIQ** — AI-powered resume-job description matcher\n\nEach project taught me something new — from ML integration to building clean UIs."
+  },
+  {
+    "question": "What is the Doctor Consultation App? Tell me about it.",
+    "answer": "🏥 The **Doctor Consultation App** is a telehealth platform I built that connects patients with doctors virtually.\n\n**What it does:**\n• Patients can browse doctors by specialty\n• Book appointments online\n• Access medical history\n\n**Tech Stack:** React (frontend), Node.js/Express (backend), MongoDB (database)\n\n**My Role:** Full-stack developer — designed the UI, built the REST APIs, integrated authentication, and set up the database schema.\n\n**Why I built it:** Telehealth is the future, and I wanted to create a platform that makes healthcare more accessible."
+  },
+  {
+    "question": "What is FraudGuard? Tell me about your fraud detection system.",
+    "answer": "🛡️ **FraudGuard** is an AI-powered credit card fraud detection system I built using machine learning.\n\n**What it does:**\n• Analyzes transaction patterns\n• Detects potentially fraudulent activities\n• Flags suspicious transactions in real-time\n• Provides a simple UI for non-technical users\n\n**Tech Stack:** React (frontend), Flask (backend), Scikit-learn (ML), SQLite (database)\n\n**ML Models Used:** Logistic Regression, Decision Trees, KNN, Naive Bayes, SVM\n\n**How it works:** The model is trained on historical transaction data and learns to identify patterns that indicate fraud. When a new transaction comes in, it's classified as safe or suspicious.\n\n**My Role:** Built the entire system — from training the ML models to creating the UI to deploying the Flask API."
+  },
+  {
+    "question": "What is ResumeIQ? Tell me about it.",
+    "answer": "📄 **ResumeIQ** is an AI-powered resume-job description matcher I built to help job seekers tailor their resumes.\n\n**What it does:**\n• Upload a resume + job description\n• Uses **TF-IDF cosine similarity** to match skills\n• Highlights matched skills ✅\n• Highlights missing skills ⚠️\n• Gives a percentage match score 📊\n\n**Tech Stack:** Flask (backend), React + Vite + Tailwind (frontend), SQLite (storage)\n\n**Why it's special:** I used the same TF-IDF technique to power my resume chatbot! It's a versatile algorithm that I keep reusing in creative ways.\n\n**My Role:** Full-stack developer — designed the algorithm, built the UI, integrated everything end-to-end."
+  },
+  {
+    "question": "What is the Weather & Mood App?",
+    "answer": "🌤️ The **Weather & Mood App** combines weather data with mood tracking to help users understand how weather affects their emotions.\n\n**What it does:**\n• Fetches real-time weather data\n• Allows users to log their mood\n• Shows correlations between weather and mood\n• Provides recommendations based on patterns\n\n**Tech Stack:** React (frontend), Flask (backend), Weather API, SQLite (database)\n\n**Why I built it:** Mental health is important, and I wanted to explore how environmental factors affect our mood. It's a unique combination of data visualization and personal wellness."
+  },
+  {
+    "question": "What is Head Hunter Hair Styling?",
+    "answer": "💇 **Head Hunter Hair Styling** is a salon management and booking website.\n\n**What it does:**\n• Showcases salon services\n• Allows customers to book appointments\n• Displays stylist profiles\n• Manages client preferences\n\n**Tech Stack:** React (frontend), Node.js/Express (backend), MongoDB (database)\n\n**My Role:** Full-stack developer — built the complete booking system with calendar integration and user authentication.\n\n**Why it matters:** This project taught me about reservation systems, calendar management, and building polished UIs for service-based businesses."
+  },
+  {
+    "question": "What is your portfolio website?",
+    "answer": "🌐 My **portfolio website** is a personal showcase of my work, skills, and experience.\n\n**What it includes:**\n• About Me section\n• Project showcase with live demos\n• Skills timeline\n• Contact information\n• Downloadable resume\n\n**Tech Stack:** React, Tailwind CSS\n\n**Link:** You can view it on my GitHub profile!\n\n**Why I built it:** Every developer needs a digital presence — it's how I present myself to recruiters, clients, and collaborators."
+  },
+  {
+    "question": "What is your Todo App?",
+    "answer": "✅ The **Todo App** is a full CRUD (Create, Read, Update, Delete) application with API integration.\n\n**What it does:**\n• Add tasks\n• Mark tasks as complete\n• Edit tasks\n• Delete tasks\n• Persistent storage (tasks saved in database)\n\n**Tech Stack:** React (frontend), Node.js/Express (backend), MongoDB (database)\n\n**My Role:** Full-stack developer — built the frontend UI, REST APIs, and database integration end-to-end.\n\n**Why I built it:** It's a classic project, but it demonstrates my ability to build clean, working CRUD applications that actually function properly."
+  },
+  {
+    "question": "Do you have freelance experience? What platforms do you use?",
+    "answer": "💼 Yes! I actively freelance as a **full-stack developer** on:\n\n• **Contra** — my primary platform\n• **Turing** — for specialized projects\n\n**Type of work I do:**\n• Full-stack web development\n• API development and integration\n• Machine learning model integration\n• Bug fixes and optimization\n• Building complete MVPs\n\nI love freelance work because it exposes me to diverse problems and tech stacks!"
+  },
+  {
+    "question": "How can I contact you? What is your email?",
+    "answer": "📬 You can reach me through:\n\n📧 **Email:** sadiaafzaal1046@gmail.com\n🔗 **LinkedIn:** www.linkedin.com/in/sadia-afzaal-504925337\n🐙 **GitHub:** https://github.com/Sadia-Afzaal\n\nI'm active on all platforms and usually respond within 24 hours. Feel free to connect with me on LinkedIn — I'd love to network!"
+  },
+  {
+    "question": "Are you looking for an internship? Are you available for work?",
+    "answer": "🎯 **YES!** I'm actively looking for a **remote internship** in software development.\n\n**Why now?**\n☀️ I just completed my 6th semester and I'm on summer break — I'm fully available and ready to start immediately!\n\n**What I'm looking for:**\n• Remote internship\n• Full-stack development roles\n• Frontend or backend focus\n• ML/AI opportunities\n\n**Why hire me:**\n✅ I build real projects, not just tutorials\n✅ Full-stack experience (React + Flask/Node.js)\n✅ Machine learning knowledge\n✅ Self-motivated and quick learner\n✅ Freelance experience (Contra, Turing)\n✅ Available for immediate start\n✅ Can dedicate full time during summer\n\n**Let's connect!** Email me at sadiaafzaal1046@gmail.com or reach out on LinkedIn."
+  },
+  {
+    "question": "Why should I hire you? What makes you a good developer?",
+    "answer": "🏆 Here's why I'd be a great addition to your team:\n\n1. **Full-Stack Capability** — I can handle frontend, backend, and database. I'm not limited to one area.\n\n2. **Project Builder** — I don't just follow tutorials. I build real, working applications that solve actual problems.\n\n3. **ML Integration** — I can add AI/ML features that most junior devs can't.\n\n4. **Freelance Experience** — I've already worked with clients on Contra and Turing. I know how to deliver on time.\n\n5. **Quick Learner** — I picked up TensorFlow and Docker on my own. I'm comfortable learning new tools fast.\n\n6. **Self-Motivated** — I build projects for fun, not just assignments. I genuinely love coding.\n\n7. **Summer Availability** — I'm on break and can dedicate full time to learning and contributing!\n\n**What I offer:** A developer who can start contributing from Day 1 and grows with your team."
+  },
+  {
+    "question": "What is your CGPA? How are your grades?",
+    "answer": "📊 My current CGPA is **3.45/4.0** at the University of Gujrat.\n\nI maintain good grades while also working on freelance projects and building personal applications. I believe in balancing theoretical knowledge with practical skills — and my projects portfolio proves that!"
+  },
+  {
+    "question": "Where are you from? What is your location?",
+    "answer": "📍 I'm from **Jalalpur Jattan**, Punjab, Pakistan.\n\nI study at the University of Gujrat. I'm comfortable working remotely and have experience collaborating with clients online.\n\nEven though I'm based in Pakistan, I'm available to work with teams across different time zones."
+  },
+  {
+    "question": "What are your strengths? What are you best at?",
+    "answer": "💪 My strongest skills are:\n\n1. **Full-Stack Development** — I can build complete applications end-to-end\n2. **React & Flask** — My primary frameworks\n3. **Machine Learning Integration** — Adding ML to web apps\n4. **Problem Solving** — I enjoy debugging and optimizing code\n5. **Self-Learning** — I pick up new technologies quickly\n6. **Communication** — Freelance experience taught me to communicate clearly with clients\n\n**What I love:** Building products that people actually use and solving real problems through code."
+  },
+  {
+    "question": "What is your degree? When will you graduate?",
+    "answer": "🎓 I'm pursuing a **BSCS (Bachelor of Science in Computer Science)** from the University of Gujrat.\n\n**Current Status:** Just completed 6th semester ✅\n**Expected Graduation:** 2027\n**CGPA:** 3.45/4.0\n\nI'm looking for internships that align with my skills and allow me to gain industry experience while completing my degree."
+  },
+  {
+    "question": "What languages do you speak?",
+    "answer": "🗣️ I speak:\n• **English** — Professional working proficiency\n• **Urdu** — Native language\n\nI'm comfortable working in English-speaking teams and have experience communicating with international clients on Contra and Turing."
+  },
+  {
+    "question": "What type of work are you looking for?",
+    "answer": "🎯 I'm looking for:\n\n**Primary:** Remote internship in software development\n\n**Roles I'm interested in:**\n• Full-Stack Developer Intern\n• Frontend Developer Intern (React)\n• Backend Developer Intern (Flask/Node.js)\n• ML/AI Engineer Intern\n\n**Availability:** Available immediately — I'm on summer break and can dedicate full time ☀️\n\n**Work setup:** Remote preferred\n\n**Ideal team:** A place where I can learn, contribute, and grow as a developer."
+  }
+]

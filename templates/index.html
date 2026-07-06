@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat with Sadia's Resume</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1C2430;
+    --ink-soft: #2B3546;
+    --paper: #FAF9F6;
+    --card: #FFFFFF;
+    --line: #E7E4DC;
+    --brass: #B08D3F;
+    --brass-dark: #93732E;
+    --brass-soft: #F3ECDA;
+    --muted: #8A8578;
+  }
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .serif { font-family: 'Libre Caslon Text', Georgia, serif; }
+
+  .chat-scroll::-webkit-scrollbar { width: 6px; }
+  .chat-scroll::-webkit-scrollbar-thumb { background: #DCD8CC; border-radius: 10px; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .msg-in { animation: fadeIn 0.25s ease-out; }
+
+  .typing-dot { animation: blink 1.4s infinite both; }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
+
+  #send:disabled { opacity: 0.5; cursor: not-allowed; }
+  #send:not(:disabled):hover { background: var(--brass-dark) !important; }
+  #input:focus { border-color: var(--brass) !important; box-shadow: 0 0 0 3px rgba(176,141,63,0.12); }
+</style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4" style="background: var(--paper);">
+
+  <div class="w-full max-w-3xl rounded-2xl overflow-hidden flex flex-col h-[620px]" style="background: var(--card); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(28,36,48,0.04), 0 24px 48px rgba(28,36,48,0.12);">
+
+    <!-- Header -->
+    <div class="px-6 py-4 flex items-center justify-between" style="background: var(--ink); border-bottom: 2px solid var(--brass);">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-full flex items-center justify-center serif font-bold text-base"
+             style="background: var(--brass); color: var(--ink); box-shadow: 0 0 0 2px var(--ink), 0 0 0 3px rgba(176,141,63,0.5);">S</div>
+        <div>
+          <p class="serif font-bold leading-tight text-[17px]" style="color: #FAF9F6;">Sadia Afzaal</p>
+          <p class="text-xs" style="color: #B8AF97;">Full-Stack Developer &middot; Resume Assistant</p>
+        </div>
+      </div>
+      <div class="hidden sm:flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-full" style="background: rgba(176,141,63,0.15); color: var(--brass);">
+        <span class="w-1.5 h-1.5 rounded-full" style="background: var(--brass);"></span>
+        Available for internships
+      </div>
+    </div>
+
+    <!-- Chat area -->
+    <div id="chat" class="chat-scroll flex-1 overflow-y-auto px-4 py-5 space-y-4" style="background: var(--paper);"></div>
+
+    <!-- Quick suggestions -->
+    <div id="suggestions" class="px-4 py-3 flex flex-wrap gap-2 max-w-2xl mx-auto w-full" style="background: var(--paper); border-top: 1px solid var(--line);"></div>
+
+    <!-- Input -->
+    <div class="p-3 flex gap-2 max-w-2xl mx-auto w-full" style="background: var(--card); border-top: 1px solid var(--line);">
+      <input id="input" type="text" placeholder="Ask about my projects, skills..."
+        class="flex-1 px-4 py-2.5 rounded-full text-sm focus:outline-none transition"
+        style="border: 1px solid var(--line); background: var(--paper); color: var(--ink);"/>
+      <button id="send" aria-label="Send message" class="w-10 h-10 rounded-full flex items-center justify-center transition flex-shrink-0"
+        style="background: var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 12L21 4L13 21L11 13L3 12Z" stroke="var(--brass-soft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+<script>
+const chat = document.getElementById('chat');
+const input = document.getElementById('input');
+const sendBtn = document.getElementById('send');
+const suggestionsBox = document.getElementById('suggestions');
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+// Converts the bot's plain-text markdown (line breaks, **bold**) into safe HTML.
+// User-typed text is never passed through this — it stays as plain textContent.
+function formatBotText(text) {
+  let safe = escapeHtml(text);
+  safe = safe.replace(/\n/g, '<br>');
+  safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  return safe;
+}
+
+function timeNow() {
+  return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+function addMessage(text, sender) {
+  const outer = document.createElement('div');
+  outer.className = 'msg-in w-full max-w-2xl mx-auto flex flex-col ' + (sender === 'user' ? 'items-end' : 'items-start');
+
+  const bubbleRow = document.createElement('div');
+  bubbleRow.className = 'flex ' + (sender === 'user' ? 'justify-end' : 'justify-start') + ' w-full';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'px-4 py-2.5 rounded-2xl max-w-[80%] text-sm leading-relaxed';
+  if (sender === 'user') {
+    bubble.classList.add('rounded-br-sm');
+    bubble.style.background = 'var(--ink)';
+    bubble.style.color = '#FAF9F6';
+    bubble.textContent = text;
+  } else {
+    bubble.classList.add('rounded-bl-sm');
+    bubble.style.background = 'var(--card)';
+    bubble.style.color = 'var(--ink)';
+    bubble.style.border = '1px solid var(--line)';
+    bubble.innerHTML = formatBotText(text);
+  }
+
+  bubbleRow.appendChild(bubble);
+  outer.appendChild(bubbleRow);
+
+  const stamp = document.createElement('span');
+  stamp.className = 'text-[10px] mt-1 px-1';
+  stamp.style.color = 'var(--muted)';
+  stamp.textContent = (sender === 'user' ? 'You' : 'Sadia') + ' · ' + timeNow();
+  outer.appendChild(stamp);
+
+  chat.appendChild(outer);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function showTyping() {
+  const wrapper = document.createElement('div');
+  wrapper.id = 'typing-indicator';
+  wrapper.className = 'flex w-full max-w-2xl mx-auto justify-start msg-in';
+  wrapper.innerHTML = `
+    <div class="px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1" style="background: var(--card); border: 1px solid var(--line);">
+      <span class="typing-dot w-1.5 h-1.5 rounded-full" style="background: var(--muted);"></span>
+      <span class="typing-dot w-1.5 h-1.5 rounded-full" style="background: var(--muted);"></span>
+      <span class="typing-dot w-1.5 h-1.5 rounded-full" style="background: var(--muted);"></span>
+    </div>`;
+  chat.appendChild(wrapper);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function removeTyping() {
+  const el = document.getElementById('typing-indicator');
+  if (el) el.remove();
+}
+
+function setComposerEnabled(enabled) {
+  input.disabled = !enabled;
+  sendBtn.disabled = !enabled;
+}
+
+async function sendMessage(text) {
+  if (!text.trim()) return;
+  addMessage(text, 'user');
+  input.value = '';
+  setComposerEnabled(false);
+  showTyping();
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text })
+    });
+    const data = await res.json();
+
+    // Hold the typing indicator for a natural amount of time before replying,
+    // roughly scaled to how long the reply is (capped so it never feels sluggish).
+    const thinkingDelay = Math.min(2200, Math.max(900, data.reply.length * 18));
+    setTimeout(() => {
+      removeTyping();
+      addMessage(data.reply, 'bot');
+      setComposerEnabled(true);
+      input.focus();
+    }, thinkingDelay);
+  } catch (err) {
+    removeTyping();
+    addMessage("Oops, something went wrong. Please try again.", 'bot');
+    setComposerEnabled(true);
+  }
+}
+
+sendBtn.addEventListener('click', () => sendMessage(input.value));
+input.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(input.value); });
+
+async function loadSuggestions() {
+  try {
+    const res = await fetch('/api/suggestions');
+    const data = await res.json();
+    suggestionsBox.innerHTML = '';
+    data.suggestions.forEach(q => {
+      const chip = document.createElement('button');
+      chip.className = 'text-xs px-3 py-1.5 rounded-full transition font-medium';
+      chip.style.background = 'var(--brass-soft)';
+      chip.style.color = 'var(--ink)';
+      chip.style.border = '1px solid transparent';
+      chip.onmouseenter = () => { chip.style.borderColor = 'var(--brass)'; };
+      chip.onmouseleave = () => { chip.style.borderColor = 'transparent'; };
+      chip.textContent = q;
+      chip.onclick = () => sendMessage(q);
+      suggestionsBox.appendChild(chip);
+    });
+  } catch (err) { console.error(err); }
+}
+
+// Initial greeting
+addMessage("Hi! I'm a chatbot trained on Sadia's resume and projects. Ask me anything — try one of the suggestions below 👇", 'bot');
+loadSuggestions();
+</script>
+</body>
+</html>
